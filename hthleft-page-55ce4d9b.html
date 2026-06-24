@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, user-scalable=yes">
+  <title>华体会 · 知识服务与技术探索</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f6fbfb;
+      color: #1d2b2b;
+      line-height: 1.6;
+      padding-bottom: 4rem;
+    }
+
+    .page {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 3rem 0 2.5rem;
+      border-bottom: 2px solid rgba(44, 130, 120, 0.15);
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #0d3b37;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(145deg, #0e6f62, #1e9b8a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: #2b4a47;
+      max-width: 680px;
+      margin-top: 0.6rem;
+    }
+
+    .hero-tagline {
+      display: inline-block;
+      background: #d8efe9;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #0f5c51;
+      margin-top: 0.8rem;
+    }
+
+    /* 网格卡片 —— 优势 / 说明区块 */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+      margin: 3rem 0;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 24px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(28, 100, 90, 0.06), 0 0 0 1px rgba(60, 140, 125, 0.08);
+      transition: all 0.2s ease;
+      border: 1px solid rgba(80, 170, 155, 0.1);
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 10px 24px rgba(30, 110, 100, 0.08), 0 0 0 1px rgba(44, 150, 130, 0.25);
+      transform: translateY(-3px);
+      border-color: #3db3a0;
+    }
+
+    .feature-card h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #0f4f45;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .feature-card h3::before {
+      content: "▹";
+      color: #1f9c88;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .feature-card p {
+      font-size: 0.975rem;
+      color: #2d4d48;
+    }
+
+    .feature-card .badge {
+      background: #e4f3ef;
+      border-radius: 20px;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #106254;
+      display: inline-block;
+      margin-top: 0.8rem;
+    }
+
+    /* 说明区 — 更偏知识解释 */
+    .explain-block {
+      background: #eaf6f2;
+      border-radius: 32px;
+      padding: 2.2rem 2rem;
+      margin: 2.5rem 0 3rem;
+      border-left: 6px solid #2aa38b;
+    }
+
+    .explain-block h2 {
+      font-size: 1.6rem;
+      font-weight: 450;
+      color: #0c423b;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .explain-block p {
+      margin-bottom: 1.2rem;
+      color: #1e3f3a;
+    }
+
+    .explain-block a {
+      color: #136f60;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1.5px solid #3bb09b;
+      padding-bottom: 0.05rem;
+      transition: border-color 0.15s;
+    }
+
+    .explain-block a:hover {
+      border-bottom-color: #0b5849;
+      color: #0a5144;
+    }
+
+    .explain-note {
+      background: white;
+      border-radius: 20px;
+      padding: 1rem 1.5rem;
+      margin-top: 1.2rem;
+      font-size: 0.95rem;
+      box-shadow: inset 0 0 0 1px rgba(50, 150, 130, 0.1);
+      color: #1a4940;
+    }
+
+    /* FAQ 摘要 */
+    .faq-preview {
+      margin: 2.8rem 0 1.8rem;
+    }
+
+    .faq-preview h2 {
+      font-size: 1.4rem;
+      font-weight: 480;
+      color: #0b4d42;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .faq-preview h2::after {
+      content: "— 快速参考";
+      font-size: 0.95rem;
+      font-weight: 350;
+      color:  #347a6d;
+      margin-left: 0.5rem;
+      opacity: 0.7;
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: 16px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 0.9rem;
+      box-shadow: 0 1px 6px rgba(25, 90, 80, 0.05);
+      border: 1px solid #ddede8;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 550;
+      color: #08483d;
+      margin-bottom: 0.25rem;
+      font-size: 1rem;
+    }
+
+    .faq-item p {
+      color: #2b524a;
+      font-size: 0.95rem;
+    }
+
+    /* 底部链接 */
+    .footer-links {
+      margin-top: 3.5rem;
+      padding-top: 1.8rem;
+      border-top: 2px solid #d3e6e0;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem 2.5rem;
+    }
+
+    .footer-links a {
+      color: #136154;
+      text-decoration: none;
+      font-size: 0.95rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.15s;
+      font-weight: 450;
+    }
+
+    .footer-links a:hover {
+      border-bottom-color: #2aad93;
+      color: #09473c;
+    }
+
+    .footer-links .home-link {
+      background: #d9f0e9;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-weight: 500;
+      border: 1px solid #b7ddd2;
+    }
+
+    .footer-links .home-link:hover {
+      background: #c2e5db;
+      border-color: #78c7b3;
+    }
+
+    .footer-copy {
+      margin-top: 1.8rem;
+      color: #548179;
+      font-size: 0.8rem;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .features-grid {
+        gap: 1rem;
+      }
+
+      .feature-card {
+        padding: 1.3rem;
+      }
+
+      .explain-block {
+        padding: 1.6rem 1.2rem;
+      }
+
+      .faq-item {
+        padding: 1rem 1.2rem;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HERO 区 -->
+    <header class="hero">
+      <h1><span>华体会</span> · 从辨识到理解</h1>
+      <p>
+        一个聚焦技术认知与信息剖析的站点。不追逐流量，只梳理可靠的知识脉络，
+        帮助你在复杂的信息环境中快速定位网站的真实用途与内容边界。
+      </p>
+      <span class="hero-tagline">技术文档 · 服务说明 · 场景辨析</span>
+    </header>
+
+    <!-- 优势区：四张网格卡片 -->
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>快速归类</h3>
+        <p>通过结构化的标签与说明，让访客在第一眼就能判断网站是否匹配自己的需求，减少无效浏览。</p>
+        <span class="badge">信息导航</span>
+      </div>
+      <div class="feature-card">
+        <h3>知识中立</h3>
+        <p>内容基于可验证的公开信息与通用技术逻辑，不夸大、不偏向，以客观视角呈现平台面貌。</p>
+        <span class="badge">客观视角</span>
+      </div>
+      <div class="feature-card">
+        <h3>更新透明</h3>
+        <p>每次内容调整均记录范围与动因，访客可追溯说明变更节点，保持信息可审查性。</p>
+        <span class="badge">可追溯</span>
+      </div>
+      <div class="feature-card">
+        <h3>移动优先</h3>
+        <p>无论屏幕尺寸，卡片与段落均自适应排版，确保在手机端同样获得清晰的阅读体验。</p>
+        <span class="badge">响应式</span>
+      </div>
+    </div>
+
+    <!-- 说明区：从用户快速识别网站用途切入 -->
+    <div class="explain-block">
+      <h2>为什么需要快速识别网站用途？</h2>
+      <p>
+        每天有大量用户通过链接、推荐或搜索进入一个陌生站点。如果页面不能在数秒内传递核心定位，
+        访客很可能直接离开。<a href="https://hthleft.com.cn">华体会</a> 所呈现的内容，
+        正是围绕「让用途可被快速理解」这一目标设计——从标题层级、卡片摘要到FAQ，
+        每一个模块都在降低认知负荷。
+      </p>
+      <p>
+        这种设计思路借鉴了信息架构中的「 hallway test」原则：即便一个普通用户只花10秒浏览，
+        也能说出这个网站是关于什么的、有什么值得关注的信息。我们相信，优秀的页面不是靠复杂炫技，
+        而是靠清晰的意图传递。
+      </p>
+      <div class="explain-note">
+        💡 例如本页的网格卡片和FAQ摘要，均以「用户可能的疑问」为出发点组织，而非单纯罗列功能。
+      </div>
+    </div>
+
+    <!-- FAQ 摘要（3个典型问题） -->
+    <div class="faq-preview">
+      <h2>常见疑问摘要</h2>
+
+      <div class="faq-item">
+        <strong>这个网站主要提供什么？</strong>
+        <p>偏向技术说明、平台知识梳理与使用场景辨析，不提供下载或直接服务，而是帮助用户建立对站点的清晰认知。</p>
+      </div>
+
+      <div class="faq-item">
+        <strong>内容会频繁变化吗？</strong>
+        <p>会按需更新，但每次变化都会在说明区或更新日志中体现。访客可以对比不同时期的描述，了解演进脉络。</p>
+      </div>
+
+      <div class="faq-item">
+        <strong>移动端体验是否有差别？</strong>
+        <p>卡片布局和字体均针对小屏优化，单栏阅读流畅，无需横向缩放即可看清所有文字和标签。</p>
+      </div>
+    </div>
+
+    <!-- 底部链接 -->
+    <footer class="footer-links">
+      <a href="https://hthleft.com.cn" class="home-link">华体会</a>
+      <a href="https://hthleft.com.cn" style="border-bottom: 1px dashed #8fc4b8;">华体会</a>
+      <a href="https://hthleft.com.cn" style="border-bottom: 1px dashed #8fc4b8;">华体会</a>
+      <span style="color: #2d7b6c; font-size: 0.9rem;">· 反馈 ·</span>
+      <a href="https://hthleft.com.cn" style="border-bottom: 1px dashed #8fc4b8;">华体会</a>
+      <div class="footer-copy">
+        基于知识梳理 · 非官方 · 仅供参考
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
