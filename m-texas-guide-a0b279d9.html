@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>德州扑克游戏 · m-texas.com 产品说明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f4f7fa;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #1e2a3a;
+      padding: 1rem;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 32px;
+      box-shadow: 0 8px 30px rgba(0, 40, 60, 0.08);
+      overflow: hidden;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    /* 蓝绿色点缀调色板 */
+    :root {
+      --teal-100: #d4f0ed;
+      --teal-300: #7fcbc1;
+      --teal-500: #2e9a8a;
+      --teal-700: #166b5f;
+      --teal-900: #0b4038;
+      --neutral-50: #f9fbfc;
+      --neutral-200: #e6edf2;
+    }
+
+    /* 网格背景（极浅） */
+    .hero-grid-bg {
+      background-image: 
+        linear-gradient(rgba(46, 154, 138, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46, 154, 138, 0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      background-position: -1px -1px;
+      border-radius: 24px;
+      padding: 2.8rem 1.8rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0 2.5rem;
+    }
+
+    @media (min-width: 600px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--neutral-200);
+      border-radius: 20px;
+      padding: 1.5rem 1.25rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--teal-300);
+      box-shadow: 0 6px 16px rgba(46, 154, 138, 0.08);
+    }
+
+    .card-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: var(--teal-100);
+      border-radius: 14px;
+      margin-bottom: 0.75rem;
+      color: var(--teal-700);
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.4rem;
+      color: #0b2722;
+    }
+
+    .card p {
+      font-size: 0.92rem;
+      color: #3d4e5d;
+    }
+
+    h1 {
+      font-size: 2.1rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      color: #0b2a24;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .subhead {
+      font-size: 1.05rem;
+      color: #3b5a5a;
+      max-width: 680px;
+      margin-bottom: 0.75rem;
+    }
+
+    .highlight-teal {
+      color: var(--teal-700);
+      font-weight: 500;
+    }
+
+    .summary-sentence {
+      background: var(--neutral-50);
+      padding: 1.2rem 1.5rem;
+      border-left: 4px solid var(--teal-500);
+      border-radius: 12px;
+      font-size: 1rem;
+      margin: 1.8rem 0;
+    }
+
+    .faq-mini {
+      background: #f6faf9;
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin: 2rem 0 1rem;
+    }
+
+    .faq-item {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(46, 154, 138, 0.1);
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-q {
+      font-weight: 600;
+      color: #0b4038;
+      font-size: 0.98rem;
+    }
+
+    .faq-a {
+      font-size: 0.92rem;
+      color: #2a4040;
+      padding-top: 0.2rem;
+    }
+
+    .link-inline {
+      color: var(--teal-700);
+      text-decoration: none;
+      border-bottom: 2px solid var(--teal-300);
+      transition: border-color 0.15s, color 0.15s;
+      font-weight: 500;
+    }
+
+    .link-inline:hover {
+      color: #094d42;
+      border-bottom-color: #094d42;
+    }
+
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.75rem;
+      margin: 1.5rem 0 0.2rem;
+    }
+
+    .badge {
+      background: var(--teal-100);
+      color: var(--teal-900);
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .scene-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      margin: 0.8rem 0 0.2rem;
+    }
+
+    .scene-tag {
+      background: #eef5f3;
+      color: #1a554a;
+      padding: 0.1rem 0.75rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--neutral-200);
+      margin: 2rem 0 1.2rem;
+    }
+
+    .footer-note {
+      font-size: 0.82rem;
+      color: #6a7f88;
+      border-top: 1px solid var(--neutral-200);
+      padding-top: 1.2rem;
+      margin-top: 1.8rem;
+    }
+
+    /* 移动端微调 */
+    @media (max-width: 480px) {
+      .page {
+        padding: 1rem 0.8rem 2rem;
+      }
+      h1 {
+        font-size: 1.7rem;
+      }
+      .hero-grid-bg {
+        padding: 1.8rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- Hero 区域：网格背景 + 摘要 -->
+  <div class="hero-grid-bg">
+    <h1>德州扑克游戏 · 产品说明</h1>
+    <p class="subhead">专注规则、策略与场景 —— 快速了解 <a href="https://m-texas.com" class="link-inline">德州扑克游戏</a> 的核心用途与使用方式。</p>
+    <div class="badge-list">
+      <span class="badge">规则清晰</span>
+      <span class="badge">回合制</span>
+      <span class="badge">多人对局</span>
+      <span class="badge">策略优先</span>
+    </div>
+  </div>
+
+  <!-- 一句话摘要 + 定位 -->
+  <div class="summary-sentence">
+    <strong>定位摘要：</strong> 面向希望快速识别德州扑克玩法、规则结构及适用场景的用户。本页面概述产品功能基调，不做过度承诺，仅提供事实性说明。
+  </div>
+
+  <!-- 亮点卡片网格 —— 信息密度稍高 -->
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">♠</div>
+      <h3>标准规则框架</h3>
+      <p>基于通用德州扑克回合逻辑（翻牌前、翻牌、转牌、河牌），行动轮次清晰。适合已了解基本手牌组合的玩家快速上手。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">♦</div>
+      <h3>策略精简提示</h3>
+      <p>界面内嵌位置、底池赔率及对手范围参考，辅助决策而非替代判断。建议玩家结合自身经验调整下注尺度。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">♣</div>
+      <h3>多场景适配</h3>
+      <p>支持模拟练习、好友约局及小型锦标赛结构。不提供真实货币对局，仅作为策略训练与娱乐工具使用。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">♥</div>
+      <h3>数据可回顾</h3>
+      <p>每手牌结束后可查看行动记录与底牌胜负，便于复盘分析。无隐藏统计，不收集个人敏感信息。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚙</div>
+      <h3>轻量交互</h3>
+      <p>桌面端与移动端响应一致，操作步骤控制在 2–4 次点击内完成主要行动。减少冗余动画，专注牌局本身。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <h3>规则参考</h3>
+      <p>内置常见术语表及牌型排名说明，适合新手查阅。不包含教学课程，仅提供规则速查。</p>
+    </div>
+  </div>
+
+  <!-- 使用建议 + 场景 (段落式) -->
+  <h2 style="font-size: 1.25rem; font-weight: 600; color: #0b2a24; margin-top: 0.6rem;">使用建议与场景</h2>
+  <p style="margin: 0.6rem 0 0.4rem; max-width: 680px;">
+    <span class="highlight-teal">▸ 快速识别用途：</span> 若您正在寻找一款规则透明的 
+    <a href="https://m-texas.com" class="link-inline">德州扑克游戏</a> 
+    用于策略练习或朋友间交流，该站点提供了结构清晰的回合界面与基础统计。建议先进行 5–10 手牌试玩以熟悉行动流程。
+  </p>
+  <div class="scene-box">
+    <span class="scene-tag">🎯 新手规则对照</span>
+    <span class="scene-tag">📊 下注模式实验</span>
+    <span class="scene-tag">👥 2–9 人局配置</span>
+    <span class="scene-tag">🔄 快速弃牌/加注</span>
+  </div>
+  <p style="margin: 0.8rem 0 0; max-width: 680px;">
+    <span class="highlight-teal">▸ 克制说明：</span> 本产品不包含任何形式的现金奖励、代币兑换或升级系统。所有对局均为虚拟筹码，请理性娱乐。
+  </p>
+
+  <!-- FAQ 摘要 (3–4 条) -->
+  <div class="faq-mini">
+    <h3 style="font-size: 1rem; font-weight: 600; color: #0b4038; margin-bottom: 0.4rem;">常见问题摘要</h3>
+    <div class="faq-item">
+      <div class="faq-q">是否需要注册账号？</div>
+      <div class="faq-a">部分功能无需注册即可试玩；保存个人偏好或历史对局可能需要轻量账户（仅昵称与密码，不收集手机或邮箱）。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">支持哪些设备？</div>
+      <div class="faq-a">主流浏览器即可使用，iOS / Android / 桌面端均适配。建议屏幕宽度不小于 320px，网络稳定。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">是否有真人匹配？</div>
+      <div class="faq-a">目前提供好友房间码约局与简单 AI 陪练模式，无开放随机匹配池。所有对局参与人均由您指定。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">是否包含广告或付费墙？</div>
+      <div class="faq-a">无广告，无付费订阅。整个产品为免费使用，不包含内购或增值服务。</div>
+    </div>
+  </div>
+
+  <!-- 可信但克制的访问说明 -->
+  <hr>
+  <p style="font-size: 0.95rem; color: #2b4b47;">
+    <strong>可信访问说明：</strong> 本页面仅作产品介绍，不引导注册或下载。您可通过 
+    <a href="https://m-texas.com" class="link-inline">德州扑克游戏</a> 
+    直接访问站点，所有操作均基于 HTTPS 协议。请注意，任何声称使用真实货币进行德州扑克对局的外部链接均与本产品无关。
+  </p>
+  <p style="font-size: 0.9rem; color: #48635d; margin-top: 0.5rem;">
+    推荐使用前阅读站点内置的「规则与术语」部分，以确认功能符合预期。如遇技术问题，可尝试清除浏览器缓存或更换现代浏览器。
+  </p>
+
+  <div class="footer-note">
+    <span>内容方向：产品说明式 · 摘要 · 亮点 · 使用建议 · 可信说明</span><br>
+    <span style="opacity: 0.6;">© m-texas.com 介绍页 · 仅供信息参考 · 不构成任何形式的使用担保</span>
+  </div>
+</div>
+</body>
+</html>
